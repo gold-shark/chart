@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>柱状图</title>
+    <style type="text/css">
+      .canvas {
+        width: 600px;
+        height: 600px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas class="canvas" id="canvas" width="600" height="600"></canvas>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.chart.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $('#canvas').chart();
+      });
+    </script>
+  </body>
+
+</html>
