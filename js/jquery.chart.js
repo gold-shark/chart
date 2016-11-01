@@ -188,7 +188,7 @@
         function drawLegend() {
           var left = c.width * 0.5;
           $.each(opts.series, function(i) {
-            left -= (opts.series[i].name.length * 14 + 40) * 0.5;
+            left -= (cxt.measureText(opts.series[i].name).width + 40) * 0.5
           });
           $.each(opts.series, function(i) {
             switch(opts.series[i].type) {
@@ -228,7 +228,7 @@
             cxt.textAlign = 'left';
             cxt.textBaseline = 'top';
             cxt.fillText(opts.series[i].name, left, c.height - 22);
-            left += opts.series[i].name.length * 14 + 10;
+            left += cxt.measureText(opts.series[i].name).width + 10;
           });
         };
         /* 绘制提示工具  */
@@ -245,11 +245,11 @@
               cxt.fillRect(center, top, 1, bottom - top);
               var toolLeft = center + 10;
               var toolTop = Math.round(top + (bottom - top) * 0.5);
-              var toolWidth = opts.xAxis.data[i].length * 14 + 10;
+              var toolWidth = cxt.measureText(opts.xAxis.data[i]).width + 10;
               var toolHeight = 30;
               var toolText = [opts.xAxis.data[i]];
               for(var j = 0; j < opts.series.length; j++) {
-                var num = opts.series[j].name.length * 14 + opts.series[j].data[i].toString().length * 14;
+                var num = cxt.measureText(opts.series[j].name + ' : ').width + cxt.measureText(opts.series[j].data[i]).width + 10;
                 if(num > toolWidth) {
                   toolWidth = num;
                 }
@@ -257,10 +257,10 @@
                 toolText.push(opts.series[j].name + ' : ' + opts.series[j].data[i]);
               }
               if(toolLeft + toolWidth > axisInfo.right) {
-                toolLeft -= toolWidth;
+                toolLeft -= toolWidth + 20;
               }
               if(toolTop + toolHeight > axisInfo.bottom) {
-                toolTop -= toolHeight;
+                toolTop -= toolHeight + 20;
               }
               cxt.fillStyle = 'rgba(0,0,0,0.7)';
               drawFillet(toolLeft, toolTop, toolWidth, toolHeight, 3);
