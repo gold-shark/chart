@@ -3,22 +3,59 @@
 
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>柱状图</title>
     <style type="text/css">
       .canvas {
-        width: 600px;
-        height: 600px;
+        width: 100%;
+        height: auto;
+        -webkit-tap-highlight-color: transparent;
       }
     </style>
   </head>
 
   <body>
-    <canvas class="canvas" id="canvas" width="600" height="600"></canvas>
+    <canvas class="canvas" id="canvas" width="1000" height="1000"></canvas>
     <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.phone.js"></script>
     <script src="js/jquery.chart.js"></script>
     <script type="text/javascript">
       $(function() {
-        $('#canvas').chart();
+        $('#canvas').attr({ 'width': $('body').width() * 2, 'height': $('body').width() * 1.8 });
+        $('#canvas').chart({
+          global: {
+            event: 'tap'
+          },
+          scale: {
+            show: false,
+            color: '#ccc',
+            textColor: 'black'
+          },
+          xAxis: {
+            show: false,
+            data: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+          },
+          yAxis: [{
+            show: false,
+            unitSize: 1
+          }, {
+            show: false,
+            unitSize: 100, 
+            zeroScale: false
+          }],
+          series: [{
+            name: '直接访问量',
+            type: 'bar',
+            width: 20,
+            color: 'gold',
+            data: [90, 52, 20, 34, 39, 33, 22]
+          }, {
+            name: '间接访问量',
+            type: 'line',
+            color: 'red',
+            data: [48218, 48625, 48576, 48385, 48764, 49207, 48860]
+          }]
+        });
       });
     </script>
   </body>
