@@ -29,7 +29,8 @@
           scale: {
             show: false,
             color: '#ccc',
-            textColor: 'black'
+            textColor: 'black',
+            unitsColor: 'silver'
           },
           xAxis: {
             show: false,
@@ -40,17 +41,19 @@
             unitSize: 1
           }, {
             show: false,
-            unitSize: 100, 
+            unitSize: 100,
             zeroScale: false
           }],
           series: [{
             name: '直接访问量',
+            units: '套',
             type: 'bar',
             width: 20,
             color: 'gold',
             data: [90, 52, 20, 34, 39, 33, 22]
           }, {
             name: '间接访问量',
+            units: '元/月',
             type: 'line',
             color: 'red',
             data: [48218, 48625, 48576, 48385, 48764, 49207, 48860]

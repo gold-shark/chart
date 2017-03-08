@@ -31,6 +31,7 @@
         - font (type: number; default: global.font;) *文本大小*
         - color (type: color; default: global.color;)*刻度的颜色*
         - textColor (type: color; default: global.color;) *文本的颜色*
+        - unitsColor (type: color; default: global.color;) *单位的颜色*
         - x [object] *X轴*
             - show (type: boolean; default: scale.show;) *是否显示*
             - space (type: number; default: scale.space;) *刻度与文本的间隙*
@@ -38,6 +39,7 @@
             - font (type: number; default: scale.font;) *文本大小*
             - color (type: color; default: scale.color;) *刻度的颜色*
             - textColor (type: color; default: scale.textColor;) *文本的颜色*
+            - unitsColor (type: color; default: scale.unitsColor;) *单位的颜色*
         - y [object] *Y轴*
             - show (type: boolean; default: scale.show;) *是否显*示*
             - space (type: number; default: scale.space;) *刻度与文本的间隙*
@@ -45,6 +47,7 @@
             - font (type: number; default: scale.font;) *文本大小*
             - color (type: color; default: scale.color;) *刻度的颜色*
             - textColor (type: color; default: scale.textColor;) *文本的颜色*
+            - unitsColor (type: color; default: scale.unitsColor;) *单位的颜色*
     - auxiliaryLine [object] *辅助线*
         - show (type: boolean; default: true;) *是否显示*
         - stype (type: enum['dashed','dotted','solid']; default: 'dashed';) *辅助线的样式*
@@ -73,6 +76,7 @@
     - series [Array] *图表数据集*
         - type (type: enum['bar', 'line']; default: 'bar';) *图表类型*
         - name (type: string; default: undefined;) *图表名称*
+        - units (type: string; default: '';) *单位*
         - color (type: color; default: 'black';) *图表的颜色*
         - width (type: number; default: 10;) *图表的宽度（type='bar'有效）*
         - data (type: Array; default: undefined;) *图表数据*

@@ -6,7 +6,7 @@
       event: 'click'
     },
     grid: { //网格
-      top: 20,
+      top: 40,
       right: 40,
       bottom: 50,
       left: 40
@@ -199,12 +199,12 @@
         function drawYAxisScale(n, scaleNumber, scaleSize, minScale) {
           var b = true;
           if(typeof(opts.scale.y.show) !== 'undefined') {
-            b = opts.scale.x.show;
+            b = opts.scale.y.show;
           } else if(typeof(opts.scale.show) !== 'undefined') {
             b = opts.scale.show;
           }
-          var scaleLength = (opts.scale.x.length || opts.scale.length || 5) * ViewSize;
-          var scaleSpace = (opts.scale.x.space || opts.scale.space || 5) * ViewSize;
+          var scaleLength = (opts.scale.y.length || opts.scale.length || 5) * ViewSize;
+          var scaleSpace = (opts.scale.y.space || opts.scale.space || 5) * ViewSize;
           for(var i = 0; i <= scaleNumber; i++) {
             if(b) {
               var _rect = {
@@ -227,7 +227,7 @@
             cxt.font = getFontSize(opts.scale.y.font || opts.scale.font || opts.global.font, ViewSize);
             cxt.textBaseline = 'middle';
             cxt.textAlign = 'right';
-            cxt.fillStyle = opts.scale.x.textColor || opts.scale.textColor || opts.global.color;
+            cxt.fillStyle = opts.scale.y.textColor || opts.scale.textColor || opts.global.color;
             if(n) {
               cxt.textAlign = 'left';
               _text.x = Math.round(c.width - opts.grid.right + scaleLength + scaleSpace) + 1; //'+1'y右轴宽度
@@ -263,6 +263,25 @@
               }
             }
           }
+        };
+        /* 绘制单位 */
+        function drawUnits(n) {
+          var scaleLength = (opts.scale.y.length || opts.scale.length || 5) * ViewSize;
+          var scaleSpace = (opts.scale.y.space || opts.scale.space || 5) * ViewSize;
+          cxt.font = getFontSize(opts.scale.y.font || opts.scale.font || opts.global.font, ViewSize);
+          cxt.textBaseline = 'middle';
+          cxt.textAlign = 'right';
+          cxt.fillStyle = opts.scale.y.unitsColor || opts.scale.unitsColor || opts.global.color;
+          var _text = {
+            txt: opts.series[n].units || '',
+            x: Math.round(opts.grid.left - scaleLength - scaleSpace),
+            y: Math.round(opts.grid.top - 20 * ViewSize)
+          };
+          if(n) {
+            cxt.textAlign = 'left';
+            _text.x = Math.round(c.width - opts.grid.right + scaleLength + scaleSpace);
+          }
+          cxt.fillText(_text.txt, _text.x, _text.y);
         };
         /* 绘制图示  */
         function drawLegend() {
@@ -463,6 +482,7 @@
               var scaleSize = getScaleSize(unitSize, scaleNumber, minScale, maxVal);
               var maxScale = scaleNumber * scaleSize;
               drawYAxis(i);
+              drawUnits(i);
               drawYAxisScale(i, scaleNumber, scaleSize, minScale);
               drawAuxiliaryLine(scaleNumber);
               switch(opts.series[i].type) {
@@ -476,7 +496,6 @@
                   drawBarChart(this, minScale, maxScale);
                   break;
               }
-
             });
           }
         };
