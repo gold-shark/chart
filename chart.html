@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>柱状图</title>
+    <title>图表</title>
     <style type="text/css">
       .canvas {
         width: 100%;
@@ -17,46 +17,36 @@
   <body>
     <canvas class="canvas" id="canvas" width="1000" height="1000"></canvas>
     <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/jquery.phone.js"></script>
+    <script src="js/jquery.tap.js"></script>
     <script src="js/jquery.chart.js"></script>
     <script type="text/javascript">
       $(function() {
         $('#canvas').attr({ 'width': $('body').width() * 2, 'height': $('body').width() * 1.8 });
         $('#canvas').chart({
-          global: {
-            event: 'tap'
-          },
-          scale: {
-            show: false,
-            color: '#ccc',
-            textColor: 'black',
-            unitsColor: 'silver'
-          },
           xAxis: {
             show: false,
             data: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
           },
           yAxis: [{
             show: false,
-            unitSize: 1
+            unitSize: 10
           }, {
             show: false,
-            unitSize: 100,
-            zeroScale: false
+            unitSize: 10
           }],
           series: [{
             name: '直接访问量',
             units: '套',
             type: 'bar',
             width: 20,
-            color: 'gold',
-            data: [90, 52, 20, 34, 39, 33, 22]
+            color: 'green',
+            data: [250, 300, 200, 340, 390, 330, 220]
           }, {
             name: '间接访问量',
             units: '元/月',
             type: 'line',
             color: 'red',
-            data: [48218, 48625, 48576, 48385, 48764, 49207, 48860]
+            data: [480, 250, 706, 450, 640, 270, 600]
           }]
         });
       });
